@@ -1,5 +1,8 @@
+import { useDocumentTitle } from '@uidotdev/usehooks';
+
 function Home() {
-  return <h1>Helllo</h1>;
+  useDocumentTitle('Spotify(Demo) - Web Player: Music For everyone');
+  return <h1>Hello</h1>;
 }
 
 export default Home;
