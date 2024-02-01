@@ -4,9 +4,6 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --font-roboto-100:  'Mukta', sans-serif;
     
-    
-    
-    
     --color-grey-bgc : #121212;
     --color-grey-100 : hsl(0deg 0% 70.2%)
   }
