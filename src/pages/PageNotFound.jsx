@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from '../ui/Button';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDocumentTitle } from '@uidotdev/usehooks';
 
 const OverLay = styled.div`
   height: 100vh;
@@ -29,17 +30,31 @@ const OverLay = styled.div`
   }
 `;
 
+const AnchorButton = styled.button`
+  background-color: transparent;
+  color: white;
+  text-decoration: underline;
+  outline: none;
+  border: none;
+  cursor: pointer;
+`;
+
 function PageNotFound() {
+  useDocumentTitle('Page Not Found');
   const navigate = useNavigate();
   return (
     <OverLay>
-      <img src="spotify.png" alt="" srcset="" />
+      <img src="spotify.png" alt="" />
       <div>
         <h1>Page Not Found</h1>
         <p>We can't seem to find the page you are looking for.</p>
       </div>
-      <Button color="white">Home</Button>
-      <button onClick={() => navigate(-1)}>GoBack</button>
+      <Button
+        onClick={() => navigate('/Home')}
+        style={{ padding: '12px 16px', backgroundColor: 'white', color: 'black' }}>
+        Home
+      </Button>
+      <AnchorButton onClick={() => navigate(-1)}>GoBack</AnchorButton>
     </OverLay>
   );
 }

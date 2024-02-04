@@ -18,9 +18,7 @@ const StyledDiv = styled.div`
 
 function AppLayout() {
   const [openNav, setOpenNav] = useState(false);
-
   const windowSize = useWindowSize();
-
   function handleCloseNav() {
     setOpenNav((e) => !e);
   }
@@ -35,13 +33,15 @@ function AppLayout() {
   );
 
   return (
-    <StyledDiv>
-      <Column openNav={openNav}>
-        <PageNav openNav={openNav} />
-        <PlayListCard openNav={openNav} setOpenNav={handleCloseNav} />
-      </Column>
-      <ContentLayout>{<Outlet />}</ContentLayout>
-    </StyledDiv>
+    <>
+      <StyledDiv>
+        <Column openNav={openNav}>
+          <PageNav openNav={openNav} />
+          <PlayListCard openNav={openNav} setOpenNav={handleCloseNav} />
+        </Column>
+        <ContentLayout>{<Outlet />}</ContentLayout>
+      </StyledDiv>
+    </>
   );
 }
 

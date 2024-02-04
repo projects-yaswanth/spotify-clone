@@ -1,6 +1,7 @@
 import { AiFillBoxPlot, AiOutlineArrowRight, AiOutlinePlus } from 'react-icons/ai';
 import styled from 'styled-components';
-import CircleButton from './CircleButton';
+import ButtonGroup from './ButtonGroup';
+import Button from './Button';
 
 const PlayList = styled.div`
   background-color: #121212;
@@ -40,13 +41,6 @@ const Heading = styled.div`
   }
 `;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-`;
-
 function PlayListCard({ openNav, setOpenNav }) {
   return (
     <PlayList>
@@ -56,18 +50,11 @@ function PlayListCard({ openNav, setOpenNav }) {
           {!openNav && <span onClick={() => setOpenNav()}>Your Library</span>}
         </Heading>
         {!openNav ? (
-          <ButtonGroup>
-            <CircleButton title="Create Playlist or folder">
-              <AiOutlinePlus />
-            </CircleButton>
-            <CircleButton title="Show more">
-              <AiOutlineArrowRight />
-            </CircleButton>
-          </ButtonGroup>
+          <ButtonGroup prop1={<AiOutlinePlus />} prop2={<AiOutlineArrowRight />} />
         ) : (
-          <CircleButton>
+          <Button size="medium">
             <AiOutlinePlus />
-          </CircleButton>
+          </Button>
         )}
       </PlayListHeader>
       {!openNav && <h1>Hell</h1>}
