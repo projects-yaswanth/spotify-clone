@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../../ui/Button';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 const Search = styled.input.attrs({ type: 'text' })`

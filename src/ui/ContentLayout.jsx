@@ -3,7 +3,7 @@ import Column from './Column';
 import { GrDownload, GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import ButtonGroup from './ButtonGroup';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Searchbar from './SearchBar';
+import Searchbar from '../features/Search/SearchBar';
 import Button from './Button';
 
 import { HiBellAlert } from 'react-icons/hi2';
@@ -11,8 +11,10 @@ import { HiBellAlert } from 'react-icons/hi2';
 const DisplayLayout = styled.main`
   background-color: var(--color-grey-bgc);
   border-radius: 10px;
-  padding: 0 10px;
   flex-grow: 1;
+  width: 100%;
+  height: 97vh;
+  overflow: hidden;
 `;
 
 const StyledNav = styled.nav`
@@ -58,7 +60,7 @@ function ContentLayout({ children }) {
           <ButtonGroup prop1={<HiBellAlert />} variation="dark" size="medium" prop2={'A'} />
         </Directions>
       </StyledNav>
-      <Column>{children}</Column>
+      {children}
     </DisplayLayout>
   );
 }
