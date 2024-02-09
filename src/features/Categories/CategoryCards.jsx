@@ -10,7 +10,6 @@ const Cards = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   gap: 2rem;
   padding: 1.5rem;
   overflow: scroll;
@@ -47,8 +46,8 @@ function CategoryCards() {
           wrapperClass
         />
       )} */}
-      {items?.map((item, n) => (
-        <CategoryCard key={n} item={item} />
+      {items?.map((item) => (
+        <CategoryCard key={item.catId} item={item} />
       ))}
     </Cards>
   );

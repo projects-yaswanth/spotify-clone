@@ -7,6 +7,7 @@ import SearchPage from './pages/SearchPage';
 import PageNotFound from './pages/PageNotFound';
 import { Buffer } from 'buffer';
 import { useEffect } from 'react';
+import CategoryExplorePage from './pages/CategoryExplorePage';
 
 function App() {
   const CLIENT_ID = 'd4dd0a86583a421f801a78ffaf9690b9';
@@ -39,6 +40,7 @@ function App() {
             <Route index element={<Navigate replace to="home" />} />
             <Route path="home" element={<Home />} />
             <Route path="search" element={<SearchPage />} />
+            <Route path="search/:q" element={<CategoryExplorePage />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
