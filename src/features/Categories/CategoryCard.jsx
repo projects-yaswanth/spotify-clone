@@ -1,3 +1,4 @@
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -9,11 +10,20 @@ const Card = styled.div`
   background-position: -30px -10px;
   background-repeat: no-repeat;
   cursor: pointer;
+  font-size: 85%;
 `;
 
 function CategoryCard({ item }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   return (
-    <Card style={{ backgroundImage: `url(${item.image})` }}>
+    <Card
+      onClick={() => {
+        const query = item.catName.split(' ').join('+').split('/').join('+');
+        navigate(`/search/${query}`);
+      }}
+      style={{ backgroundImage: `url(${item.image})` }}>
       <h2>{item.catName}</h2>
     </Card>
   );

@@ -1,10 +1,9 @@
-import styled from 'styled-components';
-import Column from './Column';
 import { GrDownload, GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import ButtonGroup from './ButtonGroup';
 import { useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import Searchbar from '../features/Search/SearchBar';
 import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 
 import { HiBellAlert } from 'react-icons/hi2';
 
@@ -52,7 +51,7 @@ function ContentLayout({ children }) {
           prop2={<GrFormNext />}
           variation="dark"
         />
-        {pathname === '/search' && <Searchbar />}
+        {pathname.startsWith('/search') && <Searchbar />}
         <Directions>
           <Button variation="dark" size="medium">
             <GrDownload /> <span>Install App</span>

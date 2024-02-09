@@ -5,9 +5,8 @@ export const getCategories = async () => {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   });
-  const jsonData = await data.json();
 
-  console.log(jsonData);
+  const jsonData = await data.json();
   const {
     categories: { items = {} }
   } = jsonData;
@@ -15,7 +14,19 @@ export const getCategories = async () => {
   const refData = items.map((cat) => {
     return { catName: cat.name, catId: cat.id, image: cat.icons[0].url };
   });
+
   return refData;
 };
-np;
-getCategories();
+
+export const searchItems = async (name) => {
+  const data = await fetch(`https://api.spotify.com/v1/search?q=${name}&type=track%2Calbum`, {
+    method: 'Get',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+  const jsonData = await data.json();
+  const { albums, tracks } = jsonData;
+
+  return { albums, tracks };
+};

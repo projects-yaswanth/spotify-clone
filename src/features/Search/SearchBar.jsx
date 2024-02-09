@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../../ui/Button';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 const Search = styled.input.attrs({ type: 'text' })`
   height: 100%;
@@ -13,7 +12,6 @@ const Search = styled.input.attrs({ type: 'text' })`
   border-radius: 50px;
   padding: 5px 2.7rem;
   color: white;
-
   &:focus {
     border: 2px solid white;
   }
@@ -50,9 +48,16 @@ const CloseButton = styled.button`
 
 function Searchbar() {
   const [search, setSearch] = useState('');
+  const navigate = useNavigate();
 
   function handleSearch(e) {
     setSearch(() => e.target.value);
+    const param = e.target.value.split(' ').join('+');
+    navigate(`search/${param}`);
+
+    if (!e.target.value) {
+      navigate('search');
+    }
   }
 
   return (
