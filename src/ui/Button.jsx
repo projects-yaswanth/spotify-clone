@@ -50,10 +50,9 @@ const Button = styled.button`
   ${(props) => {
     if (props.auth === 'auth')
       return css`
-        min-width: 27rem;
-        min-height: 4rem;
-        margin: 1.7rem 0 0;
-        font-size: 1.3rem;
+        min-width: 20rem;
+        min-height: 2rem;
+        font-size: 1rem;
         background-color: transparent;
         border-radius: 30px;
         border: 1px solid #ffffff47;

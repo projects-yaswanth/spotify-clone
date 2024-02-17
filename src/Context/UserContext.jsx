@@ -4,7 +4,8 @@ const initialState = {
   name: '',
   imageUrl: '',
   accessToken: '',
-  email: ''
+  email: '',
+  isVerified: false
 };
 
 const userSlice = createSlice({

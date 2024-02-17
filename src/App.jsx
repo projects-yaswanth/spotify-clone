@@ -1,8 +1,8 @@
 //@ts-nocheck
 import { Buffer } from 'buffer';
-import { useEffect } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import UserAccess from './Context/authentication/UserAccess';
+import { Suspense, useEffect, useState } from 'react';
+import { useNavigation, BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import UserAccess from './authentication/UserAccess';
 import CategoryExplorePage from './pages/CategoryExplorePage';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -10,12 +10,15 @@ import PageNotFound from './pages/PageNotFound';
 import SearchPage from './pages/SearchPage';
 import GlobalStyles from './styles/GlobalStyles';
 import AppLayout from './ui/AppLayout';
+import Spinner from './ui/Spinner';
 
 function App() {
   const CLIENT_ID = 'd4dd0a86583a421f801a78ffaf9690b9';
   const CLIENT_SECRET = '9926a0bd368844eba1ea43f34245cb47';
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading((state) => !state)
     const fetchData = async () => {
       const data = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -36,6 +39,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
+      <Suspense fallback={<Spinner />}>
       <BrowserRouter>
         <Routes>
           <Route
@@ -55,6 +59,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
+    </Suspense>
     </>
   );
 }

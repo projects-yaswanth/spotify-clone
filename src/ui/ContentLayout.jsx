@@ -9,6 +9,7 @@ import ButtonGroup from './ButtonGroup';
 import { useState } from 'react';
 import { HiBellAlert } from 'react-icons/hi2';
 
+
 const DisplayLayout = styled.main`
   background-color: var(--color-grey-bgc);
   border-radius: 10px;
