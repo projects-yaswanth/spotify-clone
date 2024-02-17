@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import CategoryCard from './CategoryCard';
 import { useQuery } from '@tanstack/react-query';
+import styled from 'styled-components';
 import { getCategories } from '../../services/categoriesApi';
+import CategoryCard from './CategoryCard';
 
 const Cards = styled.div`
   width: 100%;
@@ -22,11 +22,7 @@ const Cards = styled.div`
 `;
 
 function CategoryCards() {
-  const {
-    data: items,
-    error,
-    isLoading
-  } = useQuery({
+  const { data: items, error } = useQuery({
     queryKey: ['categories'],
     queryFn: getCategories
   });
@@ -35,17 +31,6 @@ function CategoryCards() {
 
   return (
     <Cards>
-      {/* {isLoading && (
-        <Audio
-          height="80"
-          width="80"
-          radius="9"
-          color="green"
-          ariaLabel="three-dots-loading"
-          wrapperStyle
-          wrapperClass
-        />
-      )} */}
       {items?.map((item) => (
         <CategoryCard key={item.catId} item={item} />
       ))}

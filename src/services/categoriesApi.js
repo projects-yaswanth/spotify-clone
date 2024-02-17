@@ -26,7 +26,6 @@ export const searchItems = async (name) => {
     }
   });
   const jsonData = await data.json();
-  const { albums, tracks } = jsonData;
 
-  return { albums, tracks };
+  return jsonData;
 };

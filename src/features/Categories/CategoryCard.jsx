@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -14,14 +14,13 @@ const Card = styled.div`
 `;
 
 function CategoryCard({ item }) {
-  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   return (
     <Card
       onClick={() => {
         const query = item.catName.split(' ').join('+').split('/').join('+');
-        navigate(`/search/${query}`);
+        navigate(`/search/category/${query}`);
       }}
       style={{ backgroundImage: `url(${item.image})` }}>
       <h2>{item.catName}</h2>

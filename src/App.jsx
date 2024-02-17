@@ -1,13 +1,15 @@
 //@ts-nocheck
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import AppLayout from './ui/AppLayout';
-import Home from './pages/Home';
-import GlobalStyles from './styles/GlobalStyles';
-import SearchPage from './pages/SearchPage';
-import PageNotFound from './pages/PageNotFound';
 import { Buffer } from 'buffer';
 import { useEffect } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import UserAccess from './Context/authentication/UserAccess';
 import CategoryExplorePage from './pages/CategoryExplorePage';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import SearchPage from './pages/SearchPage';
+import GlobalStyles from './styles/GlobalStyles';
+import AppLayout from './ui/AppLayout';
 
 function App() {
   const CLIENT_ID = 'd4dd0a86583a421f801a78ffaf9690b9';
@@ -36,12 +38,20 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <UserAccess>
+                <AppLayout />
+              </UserAccess>
+            }>
             <Route index element={<Navigate replace to="home" />} />
             <Route path="home" element={<Home />} />
             <Route path="search" element={<SearchPage />} />
             <Route path="search/:q" element={<CategoryExplorePage />} />
+            <Route path="search/:q/:type" element={<CategoryExplorePage />} />
+            <Route path="search/category/:q" element={<CategoryExplorePage />} />
           </Route>
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

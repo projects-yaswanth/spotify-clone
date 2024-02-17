@@ -1,10 +1,12 @@
 import { GrDownload, GrFormNext, GrFormPrevious } from 'react-icons/gr';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Searchbar from '../features/Search/SearchBar';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 
+import { useState } from 'react';
 import { HiBellAlert } from 'react-icons/hi2';
 
 const DisplayLayout = styled.main`
@@ -37,9 +39,15 @@ const Directions = styled.div`
 function ContentLayout({ children }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const userImage = useSelector((state) => state.user.imageUrl);
 
   const handleBack = () => navigate(-1);
   const handleNext = () => navigate(1);
+
+  const [toolBarOpen, setHandleTookBar] = useState(false);
+  function handleToolBar() {
+    setHandleTookBar((state) => !state);
+  }
 
   return (
     <DisplayLayout>
@@ -56,8 +64,19 @@ function ContentLayout({ children }) {
           <Button variation="dark" size="medium">
             <GrDownload /> <span>Install App</span>
           </Button>
-          <ButtonGroup prop1={<HiBellAlert />} variation="dark" size="medium" prop2={'A'} />
+          <ButtonGroup
+            prop1={<HiBellAlert />}
+            variation="dark"
+            size="medium"
+            onClick={handleToolBar}
+            prop2={<img style={{ height: '30px', borderRadius: '50%' }} src={userImage} />}
+          />
         </Directions>
+        {toolBarOpen && (
+          <ul>
+            <li>Log out</li>
+          </ul>
+        )}
       </StyledNav>
       {children}
     </DisplayLayout>
