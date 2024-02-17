@@ -23,10 +23,13 @@ const PlayListHeader = styled.div`
 `;
 
 const Heading = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   gap: 1rem;
+  height: 2rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 
   & span {
     font-size: 1.2rem;
@@ -47,7 +50,7 @@ function PlayListCard({ openNav, setOpenNav }) {
       <PlayListHeader style={openNav ? { flexDirection: 'column', gap: '2rem' } : {}}>
         <Heading>
           <AiFillBoxPlot onClick={() => setOpenNav()} />
-          {!openNav && <span onClick={() => setOpenNav()}>Your Library</span>}
+          {!openNav && <span style={{fontSize : "1rem"}} onClick={() => setOpenNav()}>Your Library</span>}
         </Heading>
         {!openNav ? (
           <ButtonGroup prop1={<AiOutlinePlus />} prop2={<AiOutlineArrowRight />} />
@@ -57,7 +60,6 @@ function PlayListCard({ openNav, setOpenNav }) {
           </Button>
         )}
       </PlayListHeader>
-      {!openNav && <h1>Hell</h1>}
     </PlayList>
   );
 }

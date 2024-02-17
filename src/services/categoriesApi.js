@@ -19,7 +19,7 @@ export const getCategories = async () => {
 };
 
 export const searchItems = async (name) => {
-  const data = await fetch(`https://api.spotify.com/v1/search?q=${name}&type=track%2Calbum`, {
+  const data = await fetch(`https://api.spotify.com/v1/search?q=${name}&type=track%2Calbum&limit=50`, {
     method: 'Get',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
