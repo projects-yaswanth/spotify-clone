@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Search = styled.input.attrs({ type: 'text' })`
@@ -48,15 +48,15 @@ const CloseButton = styled.button`
 
 function Searchbar() {
   const [search, setSearch] = useState('');
+  const params = useParams();
   const navigate = useNavigate();
 
   function handleSearch(e) {
     setSearch(() => e.target.value);
     const param = e.target.value.split(' ').join('+');
     navigate(`search/${param}`);
-
     if (!e.target.value) {
-      navigate('search');
+      navigate('/search');
     }
   }
 
@@ -67,12 +67,16 @@ function Searchbar() {
       />
       <Search
         type="text"
-        value={search}
+        value={search || params.q}
         onChange={(e) => handleSearch(e)}
         placeholder="What do you eant to listen to?"
       />
       {search && (
-        <CloseButton onClick={() => setSearch(() => '')}>
+        <CloseButton
+          onClick={() => {
+            navigate('/search');
+            setSearch(() => '');
+          }}>
           <AiOutlineClose />
         </CloseButton>
       )}
